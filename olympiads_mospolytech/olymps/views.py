@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from django.views.generic import View
 
-# Create your views here.
+class AccountView(View):
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Hello, World!')
+
+
+    def post(self, request, *args, **kwargs):
+        return HttpResponse('Hello, World!')

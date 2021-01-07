@@ -27,8 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'olympiads_mospolytech.olympiads',
+    'olympiads_mospolytech.olymps',
+    'olympiads_mospolytech.account',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL =  '/oll'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,6 +99,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+AUTH_USER_MODEL = 'account.OlympsUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
