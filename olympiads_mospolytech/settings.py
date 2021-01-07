@@ -33,7 +33,6 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL =  '/oll'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,6 +78,23 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+EMAIL_CONFIRMATION_DAYS = 2
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 3600
+ACCOUNT_LOGOUT_REDIRECT_URL ='/account/login/'
+LOGIN_REDIRECT_URL = '/accounts/email/'
+
+# Email
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = mail_name
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = mail_passwd
+EMAIL_USE_SSL = True
 
 
 # Password validation

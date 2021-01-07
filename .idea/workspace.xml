@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5e30097-18e7-40ab-bfb7-7f2e246ed600" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +94,7 @@
       <workItem from="1609827102004" duration="6715000" />
       <workItem from="1609880457047" duration="4161000" />
       <workItem from="1609954232055" duration="5844000" />
-      <workItem from="1610024419524" duration="3868000" />
+      <workItem from="1610024419524" duration="6426000" />
     </task>
     <servers />
   </component>

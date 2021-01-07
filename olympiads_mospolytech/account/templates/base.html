@@ -9,6 +9,15 @@
     <div  class="row justify-content-center">
       <div  class="col-4">
       <h1  class="text-center">Олимпиады мосполитеха</h1>
+      <div>
+  {% if user.is_authenticated %}
+      <p>Привет, <b>{{ user.group }}{{ user.phone_number }}{{ user.email }}</b></p>
+      <a href="{% url 'logout' %}"><p>Выход</p></a>
+  {% else %}
+    <a href="{% url 'login' %}"><p>Вход</p></a>
+    <a href="{% url 'signup' %}"><p>Регистрация</p></a>
+  {% endif %}
+  </div>
       {% block main %}
       {% endblock %}
       </div>
