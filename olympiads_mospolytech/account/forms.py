@@ -16,7 +16,7 @@ class OlympsUserChangeForm(UserChangeForm):
 
 
 class UserRegistrationForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(label='Адрес электронной почты')
     group = forms.CharField(max_length=16, label='Номер группы')
     phone_number = forms.CharField(max_length=16, label='Номер телефона')
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)

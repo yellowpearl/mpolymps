@@ -6,18 +6,6 @@ from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from .managers import OlympsUserManager, EmailConfirmationManager
-
-
-class NotVerifyEmails(models.Model):
-    email = models.ForeignKey('OlympsUser', on_delete=models.CASCADE)
-    hash = models.CharField(max_length=130)
-
-    def __str__(self):
-        return self.email
-
-
-
-
 class ResetPasswords(models.Model):
     email = models.ForeignKey('OlympsUser', on_delete=models.CASCADE)
     hash = models.CharField(max_length=130)
@@ -29,7 +17,7 @@ class ResetPasswords(models.Model):
 class OlympsUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_mail_confirmed = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
     group = models.CharField(max_length=30)
@@ -49,14 +37,14 @@ class OlympsUser(AbstractBaseUser, PermissionsMixin):
 
 
 class EmailConfirmation(models.Model):
-    email = models.OneToOneField(OlympsUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(OlympsUser, on_delete=models.CASCADE)
     confirmation_key = models.CharField(max_length=40)
     sent = models.DateTimeField()
 
     objects = EmailConfirmationManager()
 
     def __str__(self):
-        return f'For {self.user}'
+        return f'For {str(self.user)}'
 
     def expire_dt(self):
         expired = self.sent + datetime.timedelta(days=EMAIL_CONFIRMATION_DAYS)

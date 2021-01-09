@@ -46,10 +46,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'olympiads_mospolytech.urls'
 
+#TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +87,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 3600
 ACCOUNT_LOGOUT_REDIRECT_URL ='/account/login/'
-LOGIN_REDIRECT_URL = '/accounts/email/'
+LOGIN_REDIRECT_URL = '/account/profile/'
 
 # Email
 
@@ -121,7 +123,7 @@ AUTH_USER_MODEL = 'account.OlympsUser'
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -134,5 +136,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'account/static'), )
 STATIC_URL = '/static/'

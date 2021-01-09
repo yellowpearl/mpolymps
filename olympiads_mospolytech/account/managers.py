@@ -11,7 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympiads_mospolytech import settings
 
-
 class OlympsUserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique identifiers
@@ -48,7 +47,6 @@ class EmailConfirmationManager(models.Manager):
         confirmation_key = hashlib.sha256((str(random())+user.email).encode('utf-8')).hexdigest()[:40]
 
         subject = _("Подтверждение регистрации на сайте олимпиад мосполитеха")
-        path = reverse('extuser:confirmation', kwargs={'key': confirmation_key})
         activate_url = f'http://127.0.0.1:8000/account/confirm-email/{confirmation_key}'
         ctx = {
             'user': user,

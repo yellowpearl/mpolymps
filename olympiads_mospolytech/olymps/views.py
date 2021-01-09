@@ -5,7 +5,7 @@ class AccountView(View):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        return HttpResponse(str(user))
+        return render(request, 'base.html')
 
 
     def post(self, request, *args, **kwargs):
