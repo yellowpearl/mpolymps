@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Календарь</h1>
+    <hr>
+    {% for o in olymps %}
+        <h3>{{ o.name }}</h3>
+        <h5>Закончится: {{ o.date_finish }}</h5>
+        <hr>
+    {% endfor %}
+{% endblock %}

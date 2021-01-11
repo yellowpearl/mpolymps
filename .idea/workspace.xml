@@ -5,26 +5,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8/storage_v2/_src_/database/olymps.dH-Uww/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8/storage_v2/_src_/database/olymps.dH-Uww/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/managers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/confirm_email_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/confirm_email_done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/email/confirmation_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/email/confirmation_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/password_reset_complete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/password_reset_confirm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/password_reset_done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/password_reset_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/password_reset_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/registration/password_reset_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/password_reset_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +26,21 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1mbiTCoMmZKeyszqQ1acAEr8lVd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -122,6 +121,9 @@
       <workItem from="1610040100387" duration="6000000" />
       <workItem from="1610095811162" duration="806000" />
       <workItem from="1610117421899" duration="6970000" />
+      <workItem from="1610211241654" duration="2932000" />
+      <workItem from="1610283088507" duration="1253000" />
+      <workItem from="1610367678910" duration="10113000" />
     </task>
     <servers />
   </component>

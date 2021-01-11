@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block main %}
+    <H1>{{ olympiad.name }}</H1>
+    <H5>{{ olympiad.date_start }} начало олимпиады</H5>
+    <H5>{{ olympiad.date_finish }} окончание олимпиады</H5>
+    <hr>
+    {% if not is_done %}
+        <h3>Вы еще не зарегистрированы на этой олимпиаде</h3>
+        <a href="{% url 'olympiad'%}registration/{{ olympiad.pk }}"><button type="button" class="btn btn-primary">Зарегистрироваться</button></a>
+    {% endif %}
+
+    {% if is_done %}
+        <h5>Ваши ответы</h5>
+
+        {% for r in resps %}
+            <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">{{ r.name }}</li>
+            <li class="list-group-item">{{ r.points }}/{{ r.max_points }}</li>
+            </ul>
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}

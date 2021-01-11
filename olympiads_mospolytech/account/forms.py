@@ -17,8 +17,9 @@ class OlympsUserChangeForm(UserChangeForm):
 
 class UserRegistrationForm(forms.Form):
     email = forms.EmailField(label='Адрес электронной почты')
+    name = forms.CharField(max_length=32, label='ФИО')
     group = forms.CharField(max_length=16, label='Номер группы')
-    phone_number = forms.CharField(max_length=16, label='Номер телефона')
+    phone_number = forms.CharField(max_length=32, label='Номер телефона')
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Повторить пароль', widget=forms.PasswordInput)
 
@@ -31,6 +32,7 @@ class UserRegistrationForm(forms.Form):
 
     def save(self):
         user = OlympsUser.objects.create_user(self.cleaned_data['email'],
+                                              self.cleaned_data['name'],
                                               self.cleaned_data['group'],
                                               self.cleaned_data['phone_number'],
                                               self.cleaned_data['password'],)

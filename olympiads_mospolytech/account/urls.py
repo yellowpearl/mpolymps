@@ -5,20 +5,13 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
-"""
-
-/verified-email_required
-/verification_sent
-
-"""
-
 
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('signup/', SignUp.as_view(), name='signup'),
-    path('profile/', AccountView.as_view(), name='profile'),
+    path('profile/', ProfileView.as_view(), name='profile'),
 
     path('confirm-email/<key>', confirmation_email, name="confirm"),
 

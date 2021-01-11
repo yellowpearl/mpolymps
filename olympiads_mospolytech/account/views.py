@@ -2,28 +2,41 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 from .forms import UserRegistrationForm
 from .models import OlympsUser, EmailConfirmation
+from ..olymps.models import Leaderboard, Olympiad
+from ..olymps.managers import LeaderboardManager
+import logging
+logging.basicConfig(level=logging.INFO)
 
-
-class AccountView(View):
+class ProfileView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
-        return render(request, 'base.html')
-
-    def post(self, request, *args, **kwargs):
-        return HttpResponse('Hello, World!')
+        if not user.is_authenticated:
+            return HttpResponseRedirect('../login')
+        ctx = {
+            'user': user,
+            'olympiads': user.olypms.all(),
+            'score': Leaderboard.objects.current_score(user),
+            'position': Leaderboard.objects.rating(user)
+        }
+        return render(request, 'registration/profile.html', ctx)
 
 
 class SignUp(View):
-
     def get(self, request):
+        user = request.user
+        if user.is_authenticated:
+            return HttpResponseRedirect('../profile')
         form = UserRegistrationForm()
         return render(request, 'registration/signup.html', {'form': form})
 
     def post(self, request):
+        user = request.user
+        if user.is_authenticated:
+            return HttpResponseRedirect('../profile')
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return HttpResponseRedirect('http://127.0.0.1:8000/account/login')
+            return HttpResponseRedirect('../login')
 
 
 def confirmation_email(request, **kwargs):

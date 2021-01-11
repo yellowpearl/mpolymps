@@ -8,24 +8,28 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-
 from olympiads_mospolytech import settings
+from ..olymps.models import Leaderboard, Answer, OtherPoints
+
 
 class OlympsUserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique identifiers
     for authentication instead of usernames.
     """
-    def create_user(self, email, group, phone_number, password):
+    def create_user(self, email, name, group, phone_number, password):
         """
         Create and save a User with the given email and password.
         """
         if not email:
             raise ValueError(_('Email должен быть указан'))
         email = self.normalize_email(email)
-        user = self.model(email=email, group=group, phone_number=phone_number)
+        user = self.model(email=email, group=group, phone_number=phone_number, name=name)
         user.set_password(password)
         user.save()
+        L = Leaderboard.objects.create(user=user)
+        A = Answer.objects.create(user=user)
+        OtherPoints.objects.create(user=user)
         return user
 
     def create_superuser(self, email, password, **extra_fields):

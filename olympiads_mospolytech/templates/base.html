@@ -18,6 +18,11 @@
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-4">
+            {% if user.is_teacher %}
+                <li class="nav-item">
+                    <a class="nav-link " href={% url 'teacher'%}>Преподаватель</a>
+                </li>
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link " href={% url 'calendar'%}>Календарь</a>
             </li>
@@ -25,7 +30,7 @@
                 <a class="nav-link " href={% url 'archive'%}>Архив</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href={% url 'contact'%}>Контакты</a>
+                <a class="nav-link " href={% url 'contacts'%}>Контакты</a>
             </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">

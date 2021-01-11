@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Для преподователя</h1>
+    <hr>
+    <a href="{% url 'olympiad'%}registration/{{ olympiad.pk }}"><button type="button" class="btn btn-primary">Создать олимпиаду</button></a>
+    <a href="{% url 'olympiad'%}registration/{{ olympiad.pk }}"><button type="button" class="btn btn-primary">Начислить дополнительные баллы</button></a>
+    <a href="{% url 'olympiad'%}registration/{{ olympiad.pk }}"><button type="button" class="btn btn-primary">Написать администратору</button></a>
+
+{% endblock %}

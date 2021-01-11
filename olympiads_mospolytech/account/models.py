@@ -6,6 +6,9 @@ from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from .managers import OlympsUserManager, EmailConfirmationManager
+from ..olymps.models import Olympiad
+
+
 class ResetPasswords(models.Model):
     email = models.ForeignKey('OlympsUser', on_delete=models.CASCADE)
     hash = models.CharField(max_length=130)
@@ -16,6 +19,7 @@ class ResetPasswords(models.Model):
 
 class OlympsUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
+    name = models.CharField(max_length=30, default='unknown')
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_mail_confirmed = models.BooleanField(default=False)
@@ -23,6 +27,7 @@ class OlympsUser(AbstractBaseUser, PermissionsMixin):
     group = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=30)
     date_joined = models.DateTimeField(default=timezone.now)
+    olypms = models.ManyToManyField(Olympiad)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = OlympsUserManager()
