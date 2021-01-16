@@ -16,7 +16,6 @@ def check_user(user, olymp_pk):
     resps = []
     for exercise in exercises:
         try:
-            logging.info('try')
             answer = Answer.objects.get(exercise=exercise, user=user)
             resp = ResponseExercise(exercise.name, answer.points, exercise.max_points)
             resps.append(resp)

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+<div class="card col-md-6 offset-md-3">
+    <div class="card-body">
+        <h4 class="card-title">Редактирование заданий</h4>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary btn-block">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

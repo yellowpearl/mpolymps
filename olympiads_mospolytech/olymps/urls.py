@@ -11,8 +11,11 @@ urlpatterns = [
 
     path('olympiad/', RedirectView.as_view(url='../about/'), name='olympiad'),
     path('olympiad/<int:pk>', OlympiadView.as_view()),
+    path('olympiad/<int:pk>/check', CheckOlympiadView.as_view()),
+    path('olympiad/<int:olympiad_pk>/check/<int:user_pk>', CheckOlympiadView.as_view()),
     path('olympiad/registration/<int:pk>', OlympiadRegistrationView.as_view(), name='olympiad_registration'),
-    path('create_olympiad/<int:pk>', OlympiadView.as_view()),
-    path('create_olympiad/<int:pk>/check', OlympiadView.as_view()),
+    path('olympiad/create/', CreateOlympiadView.as_view()),
+    path('olympiad/<int:pk>/edit_points', EditPointsView.as_view()),
+
 
 ]

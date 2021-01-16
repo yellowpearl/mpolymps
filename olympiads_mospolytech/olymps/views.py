@@ -1,6 +1,10 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 from .models import Olympiad, check_user, registration_answers
+from .forms import *
+
+import logging
+logging.basicConfig(level=logging.INFO)
 
 
 class AccountView(View):
@@ -61,6 +65,63 @@ class OlympiadRegistrationView(View):
 
 
 class TeacherView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if not (user.is_authenticated and user.is_teacher):
+            return HttpResponseRedirect('/account/profile')
+
+        return render(request, 'olypms/teacher.html')
+
+
+class CreateOlympiadView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if not (user.is_authenticated and user.is_teacher):
+            return HttpResponseRedirect('/account/profile')
+        form = OlympiadCreationForm()
+        return render(request, 'olypms/create_olympiad.html', {'form': form})
+
+    def post(self, request):
+        user = request.user
+        if not (user.is_authenticated and user.is_teacher):
+            return HttpResponseRedirect('/account/profile')
+        form = OlympiadCreationForm(request.POST)
+        if form.is_valid():
+            olymp = form.save()
+            return HttpResponseRedirect(f'../{olymp.pk}')
+
+
+
+
+
+class EditPointsView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if not (user.is_authenticated and user.is_teacher):
+            return HttpResponseRedirect('/account/profile')
+
+        pk = kwargs['pk']
+        olympiad = Olympiad.objects.get(pk=pk)
+        form = PointsFormSet(queryset=Exercise.objects.filter(olympiad=olympiad))
+        return render(request, 'olypms/edit_points.html', {'form': form})
+
+    def post(self, request, **kwargs):
+        user = request.user
+        if not (user.is_authenticated and user.is_teacher):
+            return HttpResponseRedirect('/account/profile')
+
+        pk = kwargs['pk']
+        olympiad = Olympiad.objects.get(pk=pk)
+        form = PointsFormSet(request.POST)
+        for f in form:
+            f.olympiad = olympiad
+        if form.is_valid():
+            exercises = form.save()
+            return HttpResponseRedirect(f'../{pk}')
+
+
+
+class CheckOlympiadView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
         if not (user.is_authenticated and user.is_teacher):
