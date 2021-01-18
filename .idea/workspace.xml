@@ -2,19 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5e30097-18e7-40ab-bfb7-7f2e246ed600" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8/storage_v2/_src_/database/olymps.dH-Uww/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8/storage_v2/_src_/database/olymps.dH-Uww/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/managers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/olymps/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/calendar.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/calendar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/teacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/teacher.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/archive.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/archive.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/calendar.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/calendar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/contacts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/create_olympiad.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/create_olympiad.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/edit_points.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/edit_points.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/olymp.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/olymp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/olypms/teacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/olymps/teacher.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -119,7 +134,9 @@
       <workItem from="1610283088507" duration="1253000" />
       <workItem from="1610367678910" duration="12104000" />
       <workItem from="1610813911957" duration="5038000" />
-      <workItem from="1610834866440" duration="4036000" />
+      <workItem from="1610834866440" duration="4932000" />
+      <workItem from="1610881343549" duration="9985000" />
+      <workItem from="1610921667131" duration="6238000" />
     </task>
     <servers />
   </component>

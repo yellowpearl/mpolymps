@@ -1,28 +1,40 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 from .models import Olympiad, check_user, registration_answers
+from ..account.models import OlympsUser
 from .forms import *
 
 import logging
 logging.basicConfig(level=logging.INFO)
 
 
+class BaseOlympiadView(View):
+    def is_teacher(self, user):
+        if user.is_authenticated and user.is_teacher:
+            return True
+        else:
+            return False
+
+    def is_authenticated(self, user):
+        if user.is_authenticated:
+            return True
+        else:
+            return False
+
+
 class AccountView(View):
     def get(self, request, *args, **kwargs):
-        user = request.user
         return render(request, 'base.html')
 
 
 class AboutView(View):
     def get(self, request, *args, **kwargs):
-        user = request.user
-        return render(request, 'olypms/about.html')
+        return render(request, 'olymps/about.html')
 
 
 class ContactsView(View):
     def get(self, request, *args, **kwargs):
-        user = request.user
-        return render(request, 'olypms/contacts.html')
+        return render(request, 'olymps/contacts.html')
 
 
 class CalendarView(View):
@@ -30,7 +42,7 @@ class CalendarView(View):
         ctx = {
             'olymps': Olympiad.objects.calendar()
         }
-        return render(request, 'olypms/calendar.html', ctx)
+        return render(request, 'olymps/calendar.html', ctx)
 
 
 class ArchiveView(View):
@@ -38,93 +50,153 @@ class ArchiveView(View):
         ctx = {
             'olymps': Olympiad.objects.archive()
         }
-        return render(request, 'olypms/archive.html', ctx)
+        return render(request, 'olymps/archive.html', ctx)
 
 
-class OlympiadView(View):
+class OlympiadView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
-        pk = kwargs['pk']
+        pk = kwargs['olympiad_pk']
         user = request.user
-        if not user.is_authenticated:
+        if not self.is_authenticated(user):
             return HttpResponseRedirect('/account/login')
 
         ctx = check_user(user, pk)
-        return render(request, 'olypms/olymp.html', ctx)
+        return render(request, 'olymps/olymp.html', ctx)
 
 
-class OlympiadRegistrationView(View):
+class OlympiadRegistrationView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
-        pk = kwargs['pk']
+        pk = kwargs['olympiad_pk']
         user = request.user
-        if not user.is_authenticated:
+        if not self.is_authenticated(user):
             return HttpResponseRedirect('/account/login')
         if check_user(user, pk)['is_done']:
-            return HttpResponseRedirect(f'../{pk}')
+            return HttpResponseRedirect(f'../')
         registration_answers(user, pk)
-        return HttpResponseRedirect(f'../{pk}')
+        return HttpResponseRedirect(f'../')
 
 
-class TeacherView(View):
+class TeacherView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
         user = request.user
-        if not (user.is_authenticated and user.is_teacher):
+        if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
 
-        return render(request, 'olypms/teacher.html')
+        return render(request, 'olymps/teacher.html')
 
 
-class CreateOlympiadView(View):
+class AddExtraPointsView(BaseOlympiadView):
+    def get(self, request, **kwargs):
+        user = request.user
+        if not self.is_teacher(user):
+            return HttpResponseRedirect('/account/profile')
+        form = AddExtraPointsForm()
+        return render(request, 'olymps/add_extra_points.html', {'form': form})
+
+    def post(self, request, **kwargs):
+        user = request.user
+        if not self.is_teacher(user):
+            return HttpResponseRedirect('/account/profile')
+        student_pk = kwargs['student_pk']
+        student = OlympsUser.objects.get(pk=student_pk)
+        form = AddExtraPointsForm(request.POST)
+        if form.is_valid():
+            extra = form.save(student)
+            return HttpResponseRedirect('/teacher')
+
+
+class CreateOlympiadView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
         user = request.user
-        if not (user.is_authenticated and user.is_teacher):
+        if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
         form = OlympiadCreationForm()
-        return render(request, 'olypms/create_olympiad.html', {'form': form})
+        return render(request, 'olymps/create_olympiad.html', {'form': form})
 
     def post(self, request):
         user = request.user
-        if not (user.is_authenticated and user.is_teacher):
+        if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
         form = OlympiadCreationForm(request.POST)
         if form.is_valid():
             olymp = form.save()
-            return HttpResponseRedirect(f'../{olymp.pk}')
+            return HttpResponseRedirect(f'../{olymp.pk}/edit_points')
 
 
-
-
-
-class EditPointsView(View):
+class EditPointsView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
         user = request.user
-        if not (user.is_authenticated and user.is_teacher):
+        if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
 
-        pk = kwargs['pk']
+        pk = kwargs['olympiad_pk']
         olympiad = Olympiad.objects.get(pk=pk)
         form = PointsFormSet(queryset=Exercise.objects.filter(olympiad=olympiad))
-        return render(request, 'olypms/edit_points.html', {'form': form})
+        return render(request, 'olymps/edit_points.html', {'form': form})
 
     def post(self, request, **kwargs):
         user = request.user
-        if not (user.is_authenticated and user.is_teacher):
+        if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
 
-        pk = kwargs['pk']
+        pk = kwargs['olympiad_pk']
         olympiad = Olympiad.objects.get(pk=pk)
         form = PointsFormSet(request.POST)
         for f in form:
             f.olympiad = olympiad
         if form.is_valid():
             exercises = form.save()
-            return HttpResponseRedirect(f'../{pk}')
+            return HttpResponseRedirect(f'../')
+        else:
+            return HttpResponse(f'{form.errors}')
 
 
-
-class CheckOlympiadView(View):
+class CheckOlympiadView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
         user = request.user
-        if not (user.is_authenticated and user.is_teacher):
+        if not self.is_teacher(user):
+            return HttpResponseRedirect('/account/profile')
+        form = CheckEmailForm()
+        return render(request, 'olymps/edit_points.html', {'form': form})
+
+    def post(self, request, **kwargs):
+        user = request.user
+        if not self.is_teacher(user):
+            return HttpResponseRedirect('/account/profile')
+        form = CheckEmailForm(request.POST)
+        if form.is_valid():
+            student = OlympsUser.objects.get(email=form.cleaned_data['email'])
+            return HttpResponseRedirect(f'./{student.pk}')
+
+
+class CheckPointsView(BaseOlympiadView):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        student_pk = kwargs['student_pk']
+        if not self.is_teacher(user):
+            return HttpResponseRedirect('/account/profile')
+        pk = kwargs['olympiad_pk']
+
+        olympiad = Olympiad.objects.get(pk=pk)
+        student = OlympsUser.objects.get(pk=student_pk)
+        exercises = Exercise.objects.filter(olympiad=olympiad)
+        form = AnswersFormSet(queryset=Answer.objects.filter(user=student, exercise__in=exercises))
+        return render(request, 'olymps/edit_points.html', {'form': form})
+
+    def post(self, request, **kwargs):
+        user = request.user
+        student_pk = kwargs['student_pk']
+        student = OlympsUser.objects.get(pk=student_pk)
+        if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
 
-        return render(request, 'olypms/teacher.html')
+        pk = kwargs['olympiad_pk']
+        olympiad = Olympiad.objects.get(pk=pk)
+        form = AnswersFormSet(request.POST)
+        for f in form:
+            f.user = user
+        if form.is_valid():
+            answers = form.save()
+            return HttpResponseRedirect(f'/olympiad/{pk}')
+        else:
+            return HttpResponse(f'{form.errors}')

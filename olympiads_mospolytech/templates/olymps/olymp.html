@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block main %}
     <H1>{{ olympiad.name }}</H1>
+    {% if user.is_teacher %}
+        <a href="{% url 'olympiad'%}{{ olympiad.pk }}/check"><button type="button" class="btn btn-primary">Проверить олимпиаду</button></a>
+    {% endif %}
+    <hr>
     <H5>{{ olympiad.date_start }} начало олимпиады</H5>
     <H5>{{ olympiad.date_finish }} окончание олимпиады</H5>
     <hr>
     {% if not is_done %}
         <h3>Вы еще не зарегистрированы на этой олимпиаде</h3>
-        <a href="{% url 'olympiad'%}registration/{{ olympiad.pk }}"><button type="button" class="btn btn-primary">Зарегистрироваться</button></a>
+        <a href="{% url 'olympiad'%}{{ olympiad.pk }}/registration"><button type="button" class="btn btn-primary">Зарегистрироваться</button></a>
     {% endif %}
 
     {% if is_done %}

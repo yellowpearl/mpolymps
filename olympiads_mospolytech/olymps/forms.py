@@ -1,18 +1,22 @@
 from django import forms
-from .models import Olympiad, Exercise
+from .models import Olympiad, Exercise, Answer, ExtraPoints
 from django.forms import modelformset_factory
 
 
-class ExercisePoints(forms.Form):
-    name = forms.CharField(label='Название')
+class CheckEmailForm(forms.Form):
+    email = forms.EmailField(label='Введите почту студента')
+
+
+class AddExtraPointsForm(forms.Form):
     points = forms.IntegerField(label='Очков')
 
-    def save(self, olympiad):
-        exercise = Exercise(name=self.name, max_points=self.points, olympiad=olympiad)
-        exercise.save()
+    def save(self, student):
+        extra = ExtraPoints.objects.create(user=student, points=self.cleaned_data['points'])
+        return extra
 
 
-PointsFormSet = modelformset_factory(Exercise, fields=('name', 'max_points'))
+AnswersFormSet = modelformset_factory(Answer, fields=('points',), extra=0)
+PointsFormSet = modelformset_factory(Exercise, fields=('max_points',), extra=0)
 
 
 class OlympiadCreationForm(forms.Form):

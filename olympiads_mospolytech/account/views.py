@@ -14,7 +14,7 @@ class ProfileView(View):
             return HttpResponseRedirect('../login')
         ctx = {
             'user': user,
-            'olympiads': user.olypms.all(),
+            'olympiads': user.olympiads.filter(visible=True),
             'score': Leaderboard.objects.current_score(user),
             'position': Leaderboard.objects.rating(user)
         }
@@ -43,7 +43,7 @@ def confirmation_email(request, **kwargs):
     key = kwargs['key']
     user = EmailConfirmation.objects.confirmation(key.lower())
     if user:
-        if user.is_confirm:
+        if user.is_mail_confirmed:
             activate = "Активация прошла успешно"
         else:
             activate = "Период активации истек"

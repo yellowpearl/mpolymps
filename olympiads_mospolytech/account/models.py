@@ -27,7 +27,7 @@ class OlympsUser(AbstractBaseUser, PermissionsMixin):
     group = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=30)
     date_joined = models.DateTimeField(default=timezone.now)
-    olypms = models.ManyToManyField(Olympiad)
+    olympiads = models.ManyToManyField(Olympiad)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = OlympsUserManager()

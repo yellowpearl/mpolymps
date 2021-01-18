@@ -7,14 +7,14 @@ logging.basicConfig(level=logging.INFO)
 class OlympiadManager(models.Manager):
     def archive(self):
         logging.info('archive')
-        return self.filter(date_finish__lt=timezone.now())
+        return self.filter(date_finish__lt=timezone.now(), visible=True)
 
     def calendar(self):
         logging.info('calendar')
-        return self.filter(date_finish__gt=timezone.now())
+        return self.filter(date_finish__gt=timezone.now(), visible=True)
+
 
 class LeaderboardManager(models.Manager):
-
     def current_score(self, user):
         return self.get(user=user).reload_score()
 

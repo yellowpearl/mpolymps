@@ -1,5 +1,7 @@
 import hashlib
 from random import random
+import logging
+logging.basicConfig(level=logging.INFO)
 
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.mail import send_mail
@@ -9,7 +11,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from olympiads_mospolytech import settings
-from ..olymps.models import Leaderboard, Answer, OtherPoints
+from ..olymps.models import Leaderboard, Answer, ExtraPoints
 
 
 class OlympsUserManager(BaseUserManager):
@@ -17,7 +19,7 @@ class OlympsUserManager(BaseUserManager):
     Custom user model manager where email is the unique identifiers
     for authentication instead of usernames.
     """
-    def create_user(self, email, name, group, phone_number, password):
+    def create_user(self, email, name, group, phone_number, password, *args, **kwargs):
         """
         Create and save a User with the given email and password.
         """
@@ -29,7 +31,7 @@ class OlympsUserManager(BaseUserManager):
         user.save()
         L = Leaderboard.objects.create(user=user)
         A = Answer.objects.create(user=user)
-        OtherPoints.objects.create(user=user)
+        ExtraPoints.objects.create(user=user)
         return user
 
     def create_superuser(self, email, password, **extra_fields):
@@ -67,13 +69,16 @@ class EmailConfirmationManager(models.Manager):
         )
 
     def confirmation(self, key):
+        logging.info('conf')
         try:
+            logging.info('try')
             confirmation = self.get(confirmation_key=key)
         except self.model.DoesNotExist:
             return None
         user = confirmation.user
+        logging.info('weq')
         if not confirmation.expire_dt():
-            user.is_confirm = True
+            user.is_mail_confirmed = True
             user.is_active = True
             user.save()
         return user
