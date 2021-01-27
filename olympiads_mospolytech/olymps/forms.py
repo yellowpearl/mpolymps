@@ -3,7 +3,7 @@ from .models import Olympiad, Exercise, Answer, ExtraPoints
 from django.forms import modelformset_factory
 
 
-class CheckEmailForm(forms.Form):
+class EnterEmailForm(forms.Form):
     email = forms.EmailField(label='Введите почту студента')
 
 

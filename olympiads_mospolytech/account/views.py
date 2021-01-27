@@ -4,6 +4,7 @@ from .forms import UserRegistrationForm
 from .models import OlympsUser, EmailConfirmation
 from ..olymps.models import Leaderboard, Olympiad
 from ..olymps.managers import LeaderboardManager
+from django.contrib.auth import views as auth_views
 import logging
 logging.basicConfig(level=logging.INFO)
 
@@ -37,6 +38,15 @@ class SignUp(View):
         if form.is_valid():
             user = form.save()
             return HttpResponseRedirect('../login')
+
+
+class OlympLoginView(auth_views.LoginView):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            return HttpResponseRedirect('/account/profile')
+        else:
+            return self.render_to_response(self.get_context_data())
 
 
 def confirmation_email(request, **kwargs):
