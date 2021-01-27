@@ -1,0 +1,34 @@
+
+.navbar{
+ background: #1e1e1e;
+}
+.nav-link , .navbar-brand{
+ color: #f4f4f4;
+ cursor: pointer;
+}
+.nav-link{
+ margin-right: 1em !important;
+}
+.nav-link:hover{
+ background: #f4f4f4;
+ color: #313030;
+}
+.navbar-collapse{
+ justify-content: flex-end;
+}
+.navbar-toggler{
+  background: #ffffff !important;
+}
+
+#logo{
+    width: 1.9rem;
+    height: 1.9rem;
+}
+
+a{
+text-decoration:none;
+}
+
+.container{
+    margin-top: 75px;
+}

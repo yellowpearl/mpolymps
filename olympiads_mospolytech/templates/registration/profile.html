@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block main %}
+
+    <H1><b>Профиль</b></H1>
+    <hr>
+    <H2>Иноформация</H2>
+    <hr>
+    <H5>{{user.name}}</H5>
+    <H5>{{user.phone_number}}</H5>
+    <H5>{{user.group}}</H5>
+    <hr>
+    <H4>Рейтинг</H4>
+    <p>У вас {{score}} очков</p>
+    <p>Вы на {{position}} месте</p>
+    <hr>
+    <H2>Вы участвовали:</H2>
+    {% for o in olympiads %}
+        <a href="{% url 'olympiad' %}{{ o.pk }}"><h4>{{o.name}}</h4></a>
+    {% endfor %}
+    <hr>
+
+{% endblock %}

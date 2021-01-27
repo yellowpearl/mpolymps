@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Архив</h1>
+    <hr>
+    {% for o in olymps %}
+        <a href="{% url 'olympiad' %}{{ o.pk }}"><h3>{{ o.name }}</h3></a>
+        <h5>Закончилась: {{ o.date_finish }}</h5>
+        <hr>
+    {% endfor %}
+{% endblock %}
