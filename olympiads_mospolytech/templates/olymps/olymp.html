@@ -14,14 +14,21 @@
     {% endif %}
 
     {% if is_done %}
-        <h5>Ваши ответы</h5>
+        {% if not is_checked %}
+            <h5>Ваши ответы пока не проверили, ожидайте</h5>
+        {% endif %}
+        {% if is_checked %}
+            <h5>Ваши ответы</h5>
 
         {% for r in resps %}
             <ul class="list-group list-group-horizontal">
-            <li class="list-group-item">{{ r.name }}</li>
-            <li class="list-group-item">{{ r.points }}/{{ r.max_points }}</li>
+                <li class="list-group-item">{{ r.name }}</li>
+                <li class="list-group-item">{{ r.points }}/{{ r.max_points }}</li>
             </ul>
         {% endfor %}
+        {% endif %}
+
+
 
     {% endif %}
 {% endblock %}

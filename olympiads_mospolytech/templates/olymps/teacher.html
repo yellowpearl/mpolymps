@@ -3,7 +3,23 @@
 <h1>Для преподователя</h1>
     <hr>
     <a href="{% url 'olympiad'%}create/"><button type="button" class="btn btn-primary">Создать олимпиаду</button></a>
+    <br>
+    <br>
+    <h5>Создать олимпиаду, введя название, дату старта и конца и отредактировав задания</h5>
+    <hr>
     <a href="{% url 'extra_points'%}"><button type="button" class="btn btn-primary">Начислить дополнительные баллы</button></a>
+    <br>
+    <br>
+    <h5>Начислить студенту дополнительные баллы</h5>
+    <hr>
     <a href="{% url 'olympiad'%}create/"><button type="button" class="btn btn-primary">Написать администратору</button></a>
-
+    <br>
+    <br>
+    <h5>По вопросам связанным с работой сайта, неполадками и багами можно написать администратору</h5>
+    <hr>
+    <a href="{% url 'export_user_list'%}"><button type="button" class="btn btn-primary">Скачать список студентов</button></a>
+    <br>
+    <br>
+    <h5>Экспорт студентов в виде HTML страницы</h5>
+    <hr>
 {% endblock %}

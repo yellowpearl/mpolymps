@@ -1,0 +1,11 @@
+<table>
+    {% for u in students %}
+        <tr>
+            <td>{{ u.i }}</td>
+            <td>{{ u.name }}</td>
+            <td>{{ u.phone_number }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.points }}</td>
+        </tr>
+    {% endfor %}
+</table>

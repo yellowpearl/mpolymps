@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404
 from django.views.generic import View
-from .models import Olympiad, check_user, registration_answers
+from .models import Olympiad, OlympiadIsChecked, Leaderboard, check_user, registration_answers
 from ..account.models import OlympsUser
 from .forms import *
 
@@ -56,12 +56,11 @@ class ArchiveView(View):
 
 class OlympiadView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
-        pk = kwargs['olympiad_pk']
         user = request.user
         if not self.is_authenticated(user):
             return HttpResponseRedirect('/account/login')
-
-        ctx = check_user(user, pk)
+        olympiad = get_object_or_404(Olympiad, pk=kwargs['olympiad_pk'])
+        ctx = check_user(user, olympiad)
         return render(request, 'olymps/olymp.html', ctx)
 
 
@@ -132,52 +131,35 @@ class EditPointsView(BaseOlympiadView):
             return HttpResponse(f'{form.errors}')
 
 
-class CheckOlympiadView(BaseOlympiadView):
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        if not self.is_teacher(user):
-            return HttpResponseRedirect('/account/profile')
-        form = EnterEmailForm()
-        return render(request, 'olymps/edit_points.html', {'form': form})
-
-    def post(self, request, **kwargs):
-        user = request.user
-        if not self.is_teacher(user):
-            return HttpResponseRedirect('/account/profile')
-        form = EnterEmailForm(request.POST)
-        if form.is_valid():
-            student = OlympsUser.objects.get(email=form.cleaned_data['email'])
-            return HttpResponseRedirect(f'./{student.pk}')
-
-
 class CheckPointsView(BaseOlympiadView):
     def get(self, request, *args, **kwargs):
         user = request.user
         if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
-        olympiad = Olympiad.objects.get(pk=kwargs['olympiad_pk'])
-        student = OlympsUser.objects.get(pk=kwargs['student_pk'])
+        olympiad = get_object_or_404(Olympiad, pk=kwargs['olympiad_pk'])
+        student = get_object_or_404(OlympsUser, pk=kwargs['student_pk'])
         exercises = Exercise.objects.filter(olympiad=olympiad)
         form = AnswersFormSet(queryset=Answer.objects.filter(user=student, exercise__in=exercises))
         return render(request, 'olymps/edit_points.html', {'form': form})
 
     def post(self, request, **kwargs):
         user = request.user
-        student_pk = kwargs['student_pk']
-        student = OlympsUser.objects.get(pk=student_pk)
+        student = get_object_or_404(OlympsUser, pk=kwargs['student_pk'])
         if not self.is_teacher(user):
             return HttpResponseRedirect('/account/profile')
         pk = kwargs['olympiad_pk']
-        olympiad = Olympiad.objects.get(pk=pk)
+        olympiad = get_object_or_404(Olympiad, pk=pk)
         form = AnswersFormSet(request.POST)
         for f in form:
             f.user = user
         if form.is_valid():
             answers = form.save()
+            is_checked = OlympiadIsChecked.objects.get(user=student, olympiad=olympiad)
+            is_checked.is_checked = True
+            is_checked.save()
             return HttpResponseRedirect(f'/olympiad/{pk}')
         else:
-            return HttpResponse(f'{form.errors}')
-
+            return render(request, 'olymps/edit_points.html', {'form': form})
 
 
 class EmailEnteringView(BaseOlympiadView):
@@ -218,5 +200,20 @@ class ExtraPointsView(BaseOlympiadView):
             return HttpResponseRedirect('/teacher')
         else:
             return HttpResponse(f'{form.errors}')
+
+
+class ExportUserView(BaseOlympiadView):
+    def get(self, request):
+        user = request.user
+        if not self.is_teacher(user):
+            return HttpResponseRedirect('/account/profile')
+        students = OlympsUser.objects.all()[:]
+        list_ctx = [None] * len(students)
+        for student in students:
+            student.i = Leaderboard.objects.rating(student)
+            student.points = Leaderboard.objects.current_score(student)
+            list_ctx.insert(student.i, student)
+        ctx = {'students': list_ctx}
+        return render(request, 'olymps/export_users.html', ctx)
 
 

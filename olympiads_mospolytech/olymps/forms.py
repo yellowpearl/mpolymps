@@ -1,6 +1,7 @@
 from django import forms
+from ..account.models import OlympsUser
 from .models import Olympiad, Exercise, Answer, ExtraPoints
-from django.forms import modelformset_factory
+from django.forms import modelformset_factory, BaseModelFormSet, inlineformset_factory
 
 
 class EnterEmailForm(forms.Form):
@@ -17,6 +18,9 @@ class AddExtraPointsForm(forms.Form):
 
 AnswersFormSet = modelformset_factory(Answer, fields=('points',), extra=0)
 PointsFormSet = modelformset_factory(Exercise, fields=('max_points',), extra=0)
+
+
+
 
 
 class OlympiadCreationForm(forms.Form):

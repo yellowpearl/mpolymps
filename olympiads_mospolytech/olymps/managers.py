@@ -22,5 +22,5 @@ class LeaderboardManager(models.Manager):
         current = self.get(user=user)
 
         top = self.all().filter(score__gt = current.score).order_by('-score').count()
-        return 1 + top
+        return top + 1
 

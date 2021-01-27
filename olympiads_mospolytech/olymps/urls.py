@@ -9,6 +9,7 @@ urlpatterns = [
     path('teacher/', TeacherView.as_view(), name='teacher'),
     path('teacher/add_extra_points/', EmailEnteringView.as_view(), name='extra_points'),
     path('teacher/add_extra_points/<int:student_pk>/', ExtraPointsView.as_view()),
+    path('teacher/export_user_list/', ExportUserView.as_view(), name='export_user_list'),
     path('contacts/', ContactsView.as_view(), name='contacts'),
 
     path('olympiad/', RedirectView.as_view(url='../about/'), name='olympiad'),

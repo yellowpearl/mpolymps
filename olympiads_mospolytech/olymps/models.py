@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 import logging
 from .managers import LeaderboardManager, OlympiadManager
 logging.basicConfig(level=logging.INFO)
@@ -11,8 +12,7 @@ class ResponseExercise:
         self.max_points = max_points
 
 
-def check_user(user, olymp_pk):
-    olympiad = Olympiad.objects.get(pk=olymp_pk)
+def check_user(user, olympiad):
     exercises = Exercise.objects.filter(olympiad=olympiad)
     resps = []
     for exercise in exercises:
@@ -21,14 +21,15 @@ def check_user(user, olymp_pk):
             resp = ResponseExercise(exercise.name, answer.points, exercise.max_points)
             resps.append(resp)
 
-        except Exception as err:
-            logging.info(str(err))
+        except:
             return {
                 'is_done': False,
                 'olympiad': olympiad,
             }
+    checked = OlympiadIsChecked.objects.get(olympiad=olympiad, user=user)
     return {
         'is_done': True,
+        'is_checked': checked.is_checked,
         'olympiad': olympiad,
         'resps': resps,
     }
@@ -40,6 +41,7 @@ def registration_answers(user, olympiad_pk):
     for exercise in exercises:
         Answer.objects.create(user=user, exercise=exercise, points=0)
     user.olympiads.add(olympiad)
+    OlympiadIsChecked.objects.create(user=user, olympiad=olympiad)
 
 class ExtraPoints(models.Model):
     user = models.ForeignKey('account.OlympsUser', on_delete=models.CASCADE)
@@ -56,7 +58,6 @@ class Exercise(models.Model):
     olympiad = models.ForeignKey('Olympiad', on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     max_points = models.IntegerField()
-
 
     def __str__(self):
         return str(self.olympiad) + ' ' + self.name
@@ -85,3 +86,9 @@ class Leaderboard(models.Model):
         self.score = answers['points__sum'] + others['points__sum']
         self.save()
         return self.score
+
+
+class OlympiadIsChecked(models.Model):
+    user = models.ForeignKey('account.OlympsUser', on_delete=models.CASCADE)
+    olympiad = models.ForeignKey('Olympiad', on_delete=models.CASCADE)
+    is_checked = models.BooleanField(default=False)
