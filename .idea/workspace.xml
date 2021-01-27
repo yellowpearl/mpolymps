@@ -76,4 +76,7 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/mpolymps$tests.coverage" NAME="tests Coverage Results" MODIFIED="1611760670682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/olympiads_mospolytech/olymps" />
+  </component>
 </project>
