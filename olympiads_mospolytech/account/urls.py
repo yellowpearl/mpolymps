@@ -4,6 +4,7 @@ from .views import *
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
@@ -12,6 +13,9 @@ urlpatterns = [
 
     path('signup/', SignUp.as_view(), name='signup'),
     path('profile/', ProfileView.as_view(), name='profile'),
+    path('new-chat/', NewChatView.as_view(), name='new_chat'),
+    path('chat/', RedirectView.as_view(url='../new-chat/'), name='chat'),
+    path('chat/<user_pk>', ChatView.as_view()),
 
     path('confirm-email/<key>', confirmation_email, name="confirm"),
 

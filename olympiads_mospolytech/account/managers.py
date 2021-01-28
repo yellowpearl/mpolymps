@@ -7,7 +7,6 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.core.mail import send_mail
 from django.db import models
 from django.template.loader import render_to_string
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from olympiads_mospolytech import settings
@@ -29,8 +28,8 @@ class OlympsUserManager(BaseUserManager):
         user = self.model(email=email, group=group, phone_number=phone_number, name=name)
         user.set_password(password)
         user.save()
-        L = Leaderboard.objects.create(user=user)
-        A = Answer.objects.create(user=user)
+        Leaderboard.objects.create(user=user)
+        Answer.objects.create(user=user)
         ExtraPoints.objects.create(user=user)
         return user
 
@@ -82,4 +81,30 @@ class EmailConfirmationManager(models.Manager):
             user.is_active = True
             user.save()
         return user
+
+
+class ChatManager(BaseUserManager):
+    def get_by_users(self, user1, user2):
+        try:
+            chat = self.get(user1=user1, user2=user2)
+            return chat
+        except:
+            try:
+                chat = self.get(user1=user2, user2=user1)
+                return chat
+            except:
+                return None
+
+"""
+  def _last_message(self, user, chat):
+        last_msg = Message.objects.filter(chat=chat).order_by('-create_time')[0]
+        return {
+            'chat': chat,
+            'last_msg': last_msg.create_time
+        }
+
+    def chat(self, user):
+        chat1 = self.filter(user1=user)
+        chat2 = self.filter(user2=user)
+"""
 

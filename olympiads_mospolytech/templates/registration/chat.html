@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block main %}
+    {% for e in form.non_field_errors %}
+        <div class="alert_red">{{ e }}</div>
+    {% endfor %}
+    <div class="message-chat">
+<div class="chat-body">
+    {% for m in messages %}
+    {% if m.msg_from == user %}
+    <div class="message my-message">
+    {% else %}
+    <div class="message info">
+    {% endif %}
+        <div class="message-body">
+            <div class="message-info">
+                <h4> {{ m.msg_from }} </h4>
+                <h5> <i class="fa fa-clock-o"></i> {{ m.create_time }} </h5>
+            </div>
+            <hr>
+            <div class="message-text">
+                 {{ m.text }}
+            </div>
+        </div>
+        <br>
+    </div>
+    {% endfor %}
+</div>
+</div>
+    <div class="card col-md-12">
+        <div class="card-body">
+
+            <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+
+            {{ form|crispy }}
+
+            <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

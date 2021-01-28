@@ -1,18 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import OlympsUser
-
-
-class OlympsUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm):
-        model = OlympsUser
-        fields = ('email',)
-
-
-class OlympsUserChangeForm(UserChangeForm):
-    class Meta:
-        model = OlympsUser
-        fields = ('email',)
+from .models import OlympsUser, Chat, Message
+from django.utils import timezone
+import logging
+logging.basicConfig(level=logging.INFO)
 
 
 class UserRegistrationForm(forms.Form):
@@ -37,3 +28,41 @@ class UserRegistrationForm(forms.Form):
                                               self.cleaned_data['phone_number'],
                                               self.cleaned_data['password'],)
         return user
+
+
+class NewChatForm(forms.Form):
+    email_to = forms.EmailField(label='Адрес электронной почты')
+    text = forms.CharField(max_length=300, label='Введите сообщение')
+
+    def clean_email_to(self):
+        try:
+            return OlympsUser.objects.get(email=self.cleaned_data['email_to'])
+        except:
+            raise forms.ValidationError('Данного пользователя не существует')
+
+    def save(self, user):
+        user_to = self.cleaned_data['email_to']
+        chat_exist = Chat.objects.get_by_users(user, user_to)
+        if chat_exist is None:
+            chat_exist = Chat(user1=user, user2=user_to)
+            chat_exist.save()
+        msg = Message(msg_from=user,
+                      msg_to=user_to,
+                      chat=chat_exist,
+                      text=self.cleaned_data['text'],
+                      create_time=timezone.now())
+        msg.save()
+        return user_to
+
+
+class NewMessageForm(forms.Form):
+    text = forms.CharField(max_length=300, label='Введите сообщение')
+
+    def save(self, user_from, user_to, chat):
+        msg = Message(msg_from=user_from,
+                      msg_to=user_to,
+                      chat=chat,
+                      text=self.cleaned_data['text'],
+                      create_time=timezone.now())
+        msg.save()
+        return msg

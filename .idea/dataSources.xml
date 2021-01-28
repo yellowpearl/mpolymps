@@ -22,5 +22,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/olymps</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="olymps@localhost [2]" uuid="abc6c777-a766-49d9-ba3c-d2fb6c9df905">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/olymps</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

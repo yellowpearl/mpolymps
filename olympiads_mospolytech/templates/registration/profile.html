@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block main %}
-
+    <div class="col-md-12">
     <H1><b>Профиль</b></H1>
     <hr>
-    <H2>Иноформация</H2>
+    <H2>Информация</H2>
     <hr>
     <H5>{{user.name}}</H5>
     <H5>{{user.phone_number}}</H5>
@@ -18,5 +18,8 @@
         <a href="{% url 'olympiad' %}{{ o.pk }}"><h4>{{o.name}}</h4></a>
     {% endfor %}
     <hr>
-
+    </div>
+    <div class="col-md-12">
+    <H2> Cообщения </H2>
+    </div>
 {% endblock %}

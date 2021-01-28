@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5e30097-18e7-40ab-bfb7-7f2e246ed600" name="Default Changelist" comment="" />
+    <list default="true" id="d5e30097-18e7-40ab-bfb7-7f2e246ed600" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8/storage_v2/_src_/database/olymps.dH-Uww/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8c04c48d-4cdd-4831-90ef-0a593a3196b8/storage_v2/_src_/database/olymps.dH-Uww/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/static/css/style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/static/css/style1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/olymps/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/olympiads_mospolytech/templates/registration/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account_inactive.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/base_message.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/email_confirmation_message.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/email_confirmation_signup_message.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/email_confirmation_signup_subject.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/email_confirmation_subject.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/password_reset_key_message.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email/password_reset_key_subject.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email_confirm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/logout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/cannot_delete_primary_email.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/email_confirmation_sent.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/email_confirmed.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/email_deleted.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/logged_in.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/logged_out.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/password_changed.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/password_set.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/primary_email_set.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages/unverified_primary_email.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_change.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset_from_key.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset_from_key_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_set.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup_closed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/snippets/already_logged_in.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/verification_sent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/verified_email_required.html" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,6 +193,7 @@
       <workItem from="1610921667131" duration="6886000" />
       <workItem from="1611692555039" duration="3974000" />
       <workItem from="1611743548353" duration="14755000" />
+      <workItem from="1611835224956" duration="19773000" />
     </task>
     <servers />
   </component>
