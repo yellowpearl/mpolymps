@@ -1,3 +1,4 @@
+from django.db.models import Prefetch, Q
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404, redirect
 from django.views.generic import View
 from .forms import *
@@ -14,12 +15,12 @@ class ProfileView(View):
         user = request.user
         if not user.is_authenticated:
             return HttpResponseRedirect('../login')
-        chats = Chat.objects.filter(user1=user)
         ctx = {
             'user': user,
             'olympiads': user.olympiads.filter(visible=True),
             'score': Leaderboard.objects.current_score(user),
-            'position': Leaderboard.objects.rating(user)
+            'position': Leaderboard.objects.rating(user),
+            'messages': Message.objects.get_last_messages_by_user(user, Chat)
         }
         return render(request, 'registration/profile.html', ctx)
 
@@ -93,9 +94,9 @@ class ChatView(View):
         user_to = get_object_or_404(OlympsUser, pk=kwargs['user_pk'])
         chat = Chat.objects.get_by_users(user, user_to)
         if chat is None:
-            return HttpResponseRedirect(f'/new-chat')
+            return HttpResponseRedirect('../new-chat')
         messages = Message.objects.filter(chat=chat).order_by('-create_time')
-        not_checked = Message.objects.filter(chat=chat, is_checked=False)
+        not_checked = Message.objects.filter(chat=chat, is_checked=False, msg_to=user)
         for msg in not_checked:
             msg.is_checked = True
             msg.save()

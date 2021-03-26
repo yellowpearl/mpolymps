@@ -73,3 +73,4 @@ class Message(models.Model):
     text = models.CharField(max_length=300)
     create_time = models.DateTimeField()
     is_checked = models.BooleanField(default=False)
+    objects = MessageManager()

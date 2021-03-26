@@ -6,6 +6,7 @@ logging.basicConfig(level=logging.INFO)
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.mail import send_mail
 from django.db import models
+from django.db.models import Prefetch, Q
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -95,16 +96,19 @@ class ChatManager(BaseUserManager):
             except:
                 return None
 
-"""
-  def _last_message(self, user, chat):
-        last_msg = Message.objects.filter(chat=chat).order_by('-create_time')[0]
-        return {
-            'chat': chat,
-            'last_msg': last_msg.create_time
-        }
 
-    def chat(self, user):
-        chat1 = self.filter(user1=user)
-        chat2 = self.filter(user2=user)
-"""
+class MessageManager(models.Manager):
+    def get_last_messages_by_user(self, user, chat):
+        """
+        chats = chat.objects.filter(Q(user1=user) | Q(user2=user))
+        return [self.filter(chat=c).latest('create_time') for c in chats]
+        """
+        chat_list = []
+        resp_messages = []
+        messages = self.filter(msg_to=user).order_by('-create_time').select_related('chat')
+        for m in messages:
+            if m.chat not in chat_list:
+                chat_list.append(m.chat)
+                resp_messages.append(m)
+        return resp_messages
 

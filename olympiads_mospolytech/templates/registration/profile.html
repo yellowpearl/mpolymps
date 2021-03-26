@@ -19,7 +19,29 @@
     {% endfor %}
     <hr>
     </div>
-    <div class="col-md-12">
     <H2> Cообщения </H2>
+    {% for m in messages %}
+    <a href="{% url 'chat' %}{{ m.msg_from.pk }}">
+    <div class="message info">
+        <div class="message-body">
+            <div class="message info">
+                <h6> {{ m.msg_from }} </h6>
+                <h6> <i class="fa fa-clock-o"></i> {{ m.create_time }} </h6>
+            </div>
+            <hr>
+            <div class="message-text">
+                <h5> {{ m.text }} </h5>
+            </div>
+        </div>
     </div>
+    </a>
+
+
+
+
+
+    {% endfor %}
+    <hr>
+
+
 {% endblock %}

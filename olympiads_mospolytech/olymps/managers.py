@@ -20,7 +20,6 @@ class LeaderboardManager(models.Manager):
 
     def rating(self, user):
         current = self.get(user=user)
-
-        top = self.all().filter(score__gt = current.score).order_by('-score').count()
+        top = self.all().filter(score__gt=current.score).order_by('-score').count()
         return top + 1
 

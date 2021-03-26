@@ -17,5 +17,9 @@
       <user-name>mp</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="olymps@localhost [2]" uuid="abc6c777-a766-49d9-ba3c-d2fb6c9df905">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

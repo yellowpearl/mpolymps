@@ -1,7 +1,7 @@
 <table>
     {% for u in students %}
         <tr>
-            <td>{{ u.i }}</td>
+            <td>{{ forloop.counter0 }}</td>
             <td>{{ u.name }}</td>
             <td>{{ u.phone_number }}</td>
             <td>{{ u.email }}</td>
